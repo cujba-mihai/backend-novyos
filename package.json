@@ -147,56 +147,6 @@
     },
     "npm": {
       "publish": false
-    },
-    "plugins": {
-      "@release-it/conventional-changelog": {
-        "infile": "CHANGELOG.md",
-        "preset": {
-          "name": "conventionalcommits",
-          "types": [
-            {
-              "type": "chore(deps)",
-              "section": "Dependency Upgrades"
-            },
-            {
-              "type": "fix(deps)",
-              "section": "Dependency Upgrades"
-            },
-            {
-              "type": "feat",
-              "section": "Features"
-            },
-            {
-              "type": "fix",
-              "section": "Bug Fixes"
-            },
-            {
-              "type": "perf",
-              "section": "Performance Improvements"
-            },
-            {
-              "type": "revert",
-              "section": "Reverts"
-            },
-            {
-              "type": "docs",
-              "section": "Documentation"
-            },
-            {
-              "type": "refactor",
-              "section": "Code Refactoring"
-            },
-            {
-              "type": "test",
-              "section": "Tests"
-            },
-            {
-              "type": "ci",
-              "section": "Continuous Integration"
-            }
-          ]
-        }
-      }
     }
   },
   "volta": {
