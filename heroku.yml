@@ -7,7 +7,30 @@ build:
   docker:
     web: Dockerfile          
     maildev: maildev.Dockerfile 
-
+  env: # These variables will be available during the build process
+    NODE_ENV: production
+    DATABASE_URL: ${DATABASE_URL}
+    DATABASE_TYPE: ${DATABASE_TYPE}
+    DATABASE_HOST: ${DATABASE_HOST}
+    DATABASE_PORT: ${DATABASE_PORT}
+    DATABASE_USERNAME: ${DATABASE_USERNAME}
+    DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+    DATABASE_NAME: ${DATABASE_NAME}
 run:
-  web: /opt/startup.relational.dev.sh  
-  maildev: maildev --web 8081 --smtp 8025  
+  web: 
+    command: /opt/startup.relational.dev.sh
+    env:  # These variables will be available during runtime
+      NODE_ENV: production
+      DATABASE_URL: ${DATABASE_URL}
+      DATABASE_TYPE: ${DATABASE_TYPE}
+      DATABASE_HOST: ${DATABASE_HOST}
+      DATABASE_PORT: ${DATABASE_PORT}
+      DATABASE_USERNAME: ${DATABASE_USERNAME}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      DATABASE_NAME: ${DATABASE_NAME}
+  maildev:
+    command: maildev --web 8081 --smtp 8025
+    env:
+      MAIL_PORT: 1025
+      MAIL_HOST: maildev
+      MAIL_SECURE: false
