@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 set -e
 
-# Extract host, port, and database from the DATABASE_URL
+# Extract host and port from DATABASE_URL
 if [ -n "$DATABASE_URL" ]; then
-  # Parse the DATABASE_URL
+  # Parse the DATABASE_URL for host and port
   DB_HOST=$(echo $DATABASE_URL | sed -e 's,.*//[^@]*@\(.*\):\([0-9]*\)/.*,\1,')
   DB_PORT=$(echo $DATABASE_URL | sed -e 's,.*//[^@]*@\(.*\):\([0-9]*\)/.*,\2,')
 else
