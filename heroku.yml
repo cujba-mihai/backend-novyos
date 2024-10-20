@@ -5,9 +5,5 @@ setup:
 
 build:
   docker:
-    web: Dockerfile          
-    maildev: maildev.Dockerfile 
-
-run:
-  web: /opt/startup.relational.dev.sh  
-  maildev: maildev --web 8081 --smtp 8025  
+    web: Dockerfile
+    maildev: maildev.Dockerfile
