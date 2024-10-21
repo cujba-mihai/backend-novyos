@@ -50,13 +50,8 @@ class EnvironmentVariablesValidator {
 }
 
 export default registerAs<MailConfig>('mail', () => {
-  Object.keys(process.env)
-    .filter((key) => key.includes('MAIL'))
-    .forEach((key) => {
-      console.log(`${key}: ${process.env[key]}`);
-    });
-
   validateConfig(process.env, EnvironmentVariablesValidator);
+
   const envPort = process.env.MAIL_PORT
     ? parseInt(process.env.MAIL_PORT, 10)
     : 587;

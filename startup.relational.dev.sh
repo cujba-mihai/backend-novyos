@@ -1,10 +1,6 @@
 #!/usr/bin/env bash
 set -e
 
-# Log the environment variables
-echo "DATABASE_URL: $DATABASE_URL"
-echo "NODE_ENV: $NODE_ENV"
-
 # Extract host and port from DATABASE_URL (provided by Heroku)
 if [ -n "$DATABASE_URL" ]; then
   DB_HOST=$(echo $DATABASE_URL | sed -e 's,.*//[^@]*@\(.*\):\([0-9]*\)/.*,\1,')
