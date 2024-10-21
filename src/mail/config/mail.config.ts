@@ -44,6 +44,9 @@ class EnvironmentVariablesValidator {
 
   @IsBoolean()
   MAIL_REQUIRE_TLS: boolean;
+
+  @IsString()
+  SENDGRID_API_KEY: string;
 }
 
 export default registerAs<MailConfig>('mail', () => {
@@ -68,5 +71,6 @@ export default registerAs<MailConfig>('mail', () => {
     ignoreTLS: process.env.MAIL_IGNORE_TLS === 'true',
     secure: process.env.MAIL_SECURE === 'true',
     requireTLS: process.env.MAIL_REQUIRE_TLS === 'true',
+    sendGridApiKey: process.env.SENDGRID_API_KEY || '',
   };
 });

@@ -4,22 +4,31 @@ import { ConfigService } from '@nestjs/config';
 import nodemailer from 'nodemailer';
 import Handlebars from 'handlebars';
 import { AllConfigType } from '../config/config.type';
+import nodemailerSendgrid from 'nodemailer-sendgrid';
 
 @Injectable()
 export class MailerService {
   private readonly transporter: nodemailer.Transporter;
   constructor(private readonly configService: ConfigService<AllConfigType>) {
-    this.transporter = nodemailer.createTransport({
-      host: configService.get('mail.host', { infer: true }),
-      port: configService.get('mail.port', { infer: true }),
-      ignoreTLS: configService.get('mail.ignoreTLS', { infer: true }),
-      secure: configService.get('mail.secure', { infer: true }),
-      requireTLS: configService.get('mail.requireTLS', { infer: true }),
-      auth: {
-        user: configService.get('mail.user', { infer: true }),
-        pass: configService.get('mail.password', { infer: true }),
-      },
+    const sendGridApiKey = configService.get('mail.sendGridApiKey', {
+      infer: true,
     });
+    this.transporter = nodemailer.createTransport(
+      nodemailerSendgrid({
+        apiKey: sendGridApiKey ?? '',
+      }),
+    );
+    // this.transporter = nodemailer.createTransport({
+    //   host: configService.get('mail.host', { infer: true }),
+    //   port: configService.get('mail.port', { infer: true }),
+    //   ignoreTLS: configService.get('mail.ignoreTLS', { infer: true }),
+    //   secure: configService.get('mail.secure', { infer: true }),
+    //   requireTLS: configService.get('mail.requireTLS', { infer: true }),
+    //   auth: {
+    //     user: configService.get('mail.user', { infer: true }),
+    //     pass: configService.get('mail.password', { infer: true }),
+    //   },
+    // });
   }
 
   async sendMail({

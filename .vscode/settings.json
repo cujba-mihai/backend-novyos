@@ -6,6 +6,7 @@
     "dataui",
     "maildev",
     "novyos",
+    "SENDGRID",
     "typeorm"
   ]
 }
