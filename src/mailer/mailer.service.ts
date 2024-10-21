@@ -13,6 +13,7 @@ export class MailerService {
     const sendGridApiKey = configService.get('mail.sendGridApiKey', {
       infer: true,
     });
+
     this.transporter = nodemailer.createTransport(
       nodemailerSendgrid({
         apiKey: sendGridApiKey ?? '',
